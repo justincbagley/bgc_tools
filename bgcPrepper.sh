@@ -1,9 +1,6 @@
 #!/bin/sh
 
 ##########################################################################################
-#  __  o  __   __   __  |__   __                                                         #
-# |__) | |  ' (__( |  ) |  ) (__(                                                        # 
-# |                                                                                      #
 #                              bgcPrepper v0.1.1, May 2017                               #
 #  SHELL SCRIPT FOR AUTOMATING PREPARATION OF BGC INPUT FILES FROM PLINK PED-FORMATTED   #
 #  PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                               #
