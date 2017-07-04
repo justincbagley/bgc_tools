@@ -223,16 +223,18 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 	fi
 
 
-echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'). "
+echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'), AND PREP FINAL FILES. "
 ##--Note: Could also fix this by going back up and replacing NAs with 0 0 under STEP #5 ABOVE, but
 ##--the following step adds an insignificant amount time to the analysis, so keep for now.
-	MY_INPUT_TXT_FILES="$(ls ./P1_in.txt ./P2_in.txt ./admixedIn.txt)"
+	MY_INPUT_TXT_FILES="$(ls ./P1_in.txt ./P2_in.txt ./admixed_in.txt)"
 	(
 		for l in $MY_INPUT_TXT_FILES; do echo $l; perl -i -pe 's/^\-9\ \-9/0\ 0/g' $l; done
 	)
+	cp ./admixed_in.txt ./admixedIn.txt
+	rm ./admixed_in.txt
 
 
-echo " Finished preparing P1, P2, and admixed input files for bgc analysis using the bgcPrepper utility in PIrANHA. "
+echo " Finished preparing P1, P2, and admixed input files for bgc analysis using the bgcPrepper utility in bgc_tools. "
 echo " Bye."
 #
 #
