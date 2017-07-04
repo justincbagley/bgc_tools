@@ -230,8 +230,7 @@ echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s
 	(
 		for l in $MY_INPUT_TXT_FILES; do echo $l; perl -i -pe 's/^\-9\ \-9/0\ 0/g' $l; done
 	)
-	cp ./admixed_in.txt ./admixedIn.txt
-	rm ./admixed_in.txt
+	mv ./admixed_in.txt ./admixedIn.txt
 
 
 echo " Finished preparing P1, P2, and admixed input files for bgc analysis using the bgcPrepper utility in bgc_tools. "
