@@ -1,18 +1,18 @@
 #!/bin/sh
 
 ##########################################################################################
-#                              bgcPrepper v0.1.1, May 2017                               #
+#                              bgcPrepper v0.1.2, July 2017                              #
 #  SHELL SCRIPT FOR AUTOMATING PREPARATION OF BGC INPUT FILES FROM PLINK PED-FORMATTED   #
 #  PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                               #
 #  Copyright (c)2017 Justinc C. Bagley, Virginia Commonwealth University, Richmond, VA,  #
 #  USA; Universidade de Brasília, Brasília, DF, Brazil. See README and license on GitHub #
-#  (http://github.com/justincbagley) for further information. Last update: May 18, 2017. #
+#  (http://github.com/justincbagley) for further information. Last update: July 4, 2017. #
 #  For questions, please email jcbagley@vcu.edu.                                         #
 ##########################################################################################
 
 echo "
 ##########################################################################################
-#                              bgcPrepper v0.1.1, May 2017                               #
+#                              bgcPrepper v0.1.2, July 2017                              #
 ##########################################################################################"
 
 ######################################## START ###########################################
@@ -221,6 +221,16 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 		echo "WARNING!  | $(date) |          blank lines, as needed: "
 		echo "WARNING!  | $(date) |          - $BLNKLINES_LOCUS_END. "
 	fi
+
+
+echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'). "
+##--Note: Could also fix this by going back up and replacing NAs with 0 0 under STEP #5 ABOVE, but
+##--the following step adds an insignificant amount time to the analysis, so keep for now.
+	MY_INPUT_TXT_FILES="$(ls ./P1_in.txt ./P2_in.txt ./admixedIn.txt)"
+	(
+		for l in $MY_INPUT_TXT_FILES; do echo $l; perl -i -pe 's/^\-9\ \-9/0\ 0/g' $l; done
+	)
+
 
 echo " Finished preparing P1, P2, and admixed input files for bgc analysis using the bgcPrepper utility in PIrANHA. "
 echo " Bye."
