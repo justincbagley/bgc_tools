@@ -15,7 +15,7 @@
 MY_SSH_ACCOUNT=NULL
 
 ############ CREATE USAGE & HELP TEXTS
-Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount ] workingDir 
+Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir 
  ## Help:
   -h   help text (also: -help)
  
