@@ -6,7 +6,7 @@
 #  PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                               #
 #  Copyright (c)2017 Justinc C. Bagley, Virginia Commonwealth University, Richmond, VA,  #
 #  USA; Universidade de Brasília, Brasília, DF, Brazil. See README and license on GitHub #
-#  (http://github.com/justincbagley) for further information. Last update: July 4, 2017. #
+#  (http://github.com/justincbagley) for further information. Last update: July 5, 2017. #
 #  For questions, please email jcbagley@vcu.edu.                                         #
 ##########################################################################################
 
