@@ -22,7 +22,7 @@ Usage="estpostCompiler.sh [Help: -h help] [-a sshAccount ] workingDir
  ## Options:
   -a   sshAccount (def: NULL) single line containing one ssh address to be used for 
        logging onto your supercomputer account, including username and hostname (e.g. 
-       ssh USER@HOST). If null, ssh account info is pulled from the bgc_runner.cfg
+       ssh USERNAME@HOSTADDRESS). If null, ssh account info is pulled from bgc_runner.cfg
        configuration file in current working directory.
 
  OVERVIEW
