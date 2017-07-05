@@ -15,7 +15,7 @@
 MY_SSH_ACCOUNT=NULL
 
 ############ CREATE USAGE & HELP TEXTS
-Usage="estpostCompiler.sh [Help: -h help] [-a sshAccount ] workingDir 
+Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount ] workingDir 
  ## Help:
   -h   help text (also: -help)
  
@@ -26,11 +26,11 @@ Usage="estpostCompiler.sh [Help: -h help] [-a sshAccount ] workingDir
        configuration file in current working directory.
 
  OVERVIEW
- Shell script for compiling the estpost software utility within the bgc software 
- distribution (Gompert & Buerkle 2012), which conducts MCMC estimation of parameters of
- the Bayesian genomic cline model (Gompert & Buerkle 2011). estpost must be compiled before
- it can be used to summarize posterior distributions of parameter estimates output by the 
- bgc model.
+ THIS IS a shell script for compiling the estpost utility within the 'bgc' v1.0 software 
+ distribution (Gompert & Buerkle 2012), for use on a remote, Linux-based supercomputing 
+ cluster. bgc conducts MCMC estimation of parameters of the Bayesian genomic cline model 
+ (Gompert & Buerkle 2011). estpost must be compiled before it can be used to summarize 
+ posterior distributions of parameter estimates output by the bgc model.
  
  Users are REQUIRED to set up passwordless ssh access prior to running this script. This 
  will allow you to avoid the script being halted by a password prompt; I cannot guarantee
@@ -47,6 +47,9 @@ Usage="estpostCompiler.sh [Help: -h help] [-a sshAccount ] workingDir
       - https://coolestguidesontheplanet.com/make-an-alias-in-bash-shell-in-os-x-terminal/  (needed to complete preceding tutorial)
       - http://unix.stackexchange.com/questions/187339/spawn-command-not-found
 
+ This script only applies to the remote supercomputer scenario discussed above, because
+ installation of estpost on the user's local machine will be quite trivial.
+ 
       ##--Usage example:
       chmod u+x "$0"	## Modify permissions.
       "$0" .		## Execute in current directory.
