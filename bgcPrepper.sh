@@ -180,8 +180,8 @@ echo "INFO      | $(date) | STEP #6: PREPARE FINAL P1 AND P2 bgc INPUT FILES. "
 	NUM_P1_FILES="$(ls ./P1_SNPs/* | wc -l)"
 	NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)"
 	
-	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./P1_in.txt; done
-	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./P2_in.txt; done
+	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./p0in.txt; done	## This is P1.
+	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./p1in.txt; done	## This is P2.
 	##--Just using $NUM_P1_FILES twice above (for P2 as well) for convenience, since these numbers
 	##--should be equal to one another. You could use $NUM_P2_FILES on the second line; however, a
 	##--better (more conservative) way would be to check whether these two values were equal, and if
@@ -199,11 +199,11 @@ echo "INFO      | $(date) | STEP #7: PREPARE FINAL ADMIXED bgc INPUT FILE. "
 		MY_N_PLUS_ONE="$(calc $MY_N_ADMIX_COL + 1)"
 		for (( i=1; i<=$MY_N_PLUS_ONE; i++ )); do
 			FILE=./admixed_SNPs/admixed_locus"$i".txt
-			cat $FILE >> ./admixed_in.txt
+			cat $FILE >> ./admixedIn.txt
 		done
 	)
 
-	perl -i -pe 's/(locus\ [0-9]*$)/$1\npop\ 0/g' ./admixed_in.txt
+	perl -i -pe 's/(locus\ [0-9]*$)/$1\npop\ 0/g' ./admixedIn.txt
 
 
 echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORRESPONDING LINES (IF ANY). "
@@ -215,7 +215,7 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 	BLNKLINES_LOCUS_END="$(grep -n $'^$' ./admixedIn.txt-e | sed 's/\.\///g; s/\://g')"
 	if [[ "$BLNKLINES_LOCUS_END" -eq "1" ]]; then
 		BLNKLINES_LOCUS_START="$(calc $BLNKLINES_LOCUS_END - 2)"
-		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixed_in.txt
+		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt
 	elif [[ "$BLNKLINES_LOCUS_END" -gt "1" ]]; then
 		echo "WARNING!  | $(date) |          Multiple blank lines in the admixed input file. Check and remove the following "
 		echo "WARNING!  | $(date) |          blank lines, as needed: "
@@ -223,14 +223,14 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 	fi
 
 
-echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'), AND PREP FINAL FILES. "
+echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'). "
 ##--Note: Could also fix this by going back up and replacing NAs with 0 0 under STEP #5 ABOVE, but
 ##--the following step adds an insignificant amount time to the analysis, so keep for now.
-	MY_INPUT_TXT_FILES="$(ls ./P1_in.txt ./P2_in.txt ./admixed_in.txt)"
+	MY_INPUT_TXT_FILES="$(ls ./p0in.txt ./p1in.txt ./admixedIn.txt)"
 	(
 		for l in $MY_INPUT_TXT_FILES; do echo $l; perl -i -pe 's/^\-9\ \-9/0\ 0/g' $l; done
 	)
-	mv ./admixed_in.txt ./admixedIn.txt
+##--Note: final file names are ./p0in.txt ./p1in.txt ./admixedIn.txt. These file names are assumed in bgcRunner and other bgc_tools scripts.
 
 
 echo " Finished preparing P1, P2, and admixed input files for bgc analysis using the bgcPrepper utility in bgc_tools. "
