@@ -146,10 +146,10 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 		for i in ./P1_SNPs/P1_locus*.txt; do
 			FILENAME=$(basename $i); FILENAME_MINUS_EXT=${FILENAME%.*}
 			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' $i
-			perl -i -pe 's/^1\:2/1\ 1/g' $i
-			perl -i -pe 's/^1\:1/0\ 2/g' $i
-			perl -i -pe 's/^2\:2/2\ 0/g' $i
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$i"
+			perl -i -pe 's/^1\:2/1\ 1/g' "$i"
+			perl -i -pe 's/^1\:1/0\ 2/g' "$i"
+			perl -i -pe 's/^2\:2/2\ 0/g' "$i"
 		done
 	)
 	
@@ -157,10 +157,10 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 		for j in ./P2_SNPs/P2_locus*.txt; do
 			FILENAME=$(basename $j); FILENAME_MINUS_EXT=${FILENAME%.*}
 			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' $j
-			perl -i -pe 's/^1\:2/1\ 1/g' $j
-			perl -i -pe 's/^1\:1/0\ 2/g' $j
-			perl -i -pe 's/^2\:2/2\ 0/g' $j
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$j"
+			perl -i -pe 's/^1\:2/1\ 1/g' "$j"
+			perl -i -pe 's/^1\:1/0\ 2/g' "$j"
+			perl -i -pe 's/^2\:2/2\ 0/g' "$j"
 		done
 	)
 
@@ -168,10 +168,10 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 		for k in ./admixed_SNPs/admixed_locus*.txt; do
 			FILENAME=$(basename $k); FILENAME_MINUS_EXT=${FILENAME%.*}
 			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' $k
-			perl -i -pe 's/^1\:2/1\ 1/g' $k
-			perl -i -pe 's/^1\:1/0\ 2/g' $k
-			perl -i -pe 's/^2\:2/2\ 0/g' $k
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$k"
+			perl -i -pe 's/^1\:2/1\ 1/g' "$k"
+			perl -i -pe 's/^1\:1/0\ 2/g' "$k"
+			perl -i -pe 's/^2\:2/2\ 0/g' "$k"
 		done
 	)
 	
@@ -228,7 +228,7 @@ echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s
 ##--the following step adds an insignificant amount time to the analysis, so keep for now.
 	MY_INPUT_TXT_FILES="$(ls ./p0in.txt ./p1in.txt ./admixedIn.txt)"
 	(
-		for l in $MY_INPUT_TXT_FILES; do echo $l; perl -i -pe 's/^\-9\ \-9/0\ 0/g' $l; done
+		for l in $MY_INPUT_TXT_FILES; do echo "$l"; perl -i -pe 's/^\-9\ \-9/0\ 0/g' "$l"; done
 	)
 ##--Note: final file names are ./p0in.txt ./p1in.txt ./admixedIn.txt. These file names are assumed in bgcRunner and other bgc_tools scripts.
 
