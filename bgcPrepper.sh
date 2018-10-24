@@ -21,7 +21,9 @@ echo "
 ##--PLINK in vcftools, separately for p1, p2, and admixed individuals. In other words, make
 ##--the input file by splitting your original vcf datafile into three separate PED-formatted
 ##--files in vcftools. Specifically do this using the --keep and/or --indv, --recode/--012,
-##--and --plink options within vcftools. Once these files are in hand, simply place them 
+##--and --plink options within vcftools. Once these files are in hand, simply place them into
+##--the current working directory where the bgcPrepper shell script is located and run the
+##--prepper analysis from the command line using $ ./bgcPrepper.sh.
 
 echo "INFO      | $(date) | STEP #1: SETUP. " 
 ###### Set paths and filetypes as different environmental variables, and make calc:
