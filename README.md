@@ -3,7 +3,7 @@ Utilities for automating bgc (Bayesian genomic cline) file prep, analysis, and r
 
 ## LICENSE
 
-All code within the ```bgc_tools``` repository is available "AS IS" under a generous GNU license. See the [LICENSE](LICENSE) file for more information.
+All code within the ```bgc_tools``` repository is available "AS IS" under a generous 3-Clause BSD license. See the [LICENSE](LICENSE) file for more information.
 
 ## CITATION
 
