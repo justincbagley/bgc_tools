@@ -1,13 +1,19 @@
 #!/bin/sh
 
 ##########################################################################################
-#                           estpostCompiler v0.1.0, July 2017                            #
-#  SHELL SCRIPT THAT COMPILES THE estpost UTILITY WITHIN THE bgc (BAYESIAN GENOMIC CLINE #
-#  SOFTWARE) DISTRIBUTION                                                                #
-#  Copyright (c)2017 Justinc C. Bagley, Virginia Commonwealth University, Richmond, VA,  #
-#  USA; Universidade de Brasília, Brasília, DF, Brazil. See README and license on GitHub #
-#  (http://github.com/justincbagley) for further information. Last update: July 5, 2017. #
-#  For questions, please email jcbagley@vcu.edu.                                         #
+# bgc_tools                                                                              #
+# File: estpostCompiler.sh                                                               #
+  version="v1.0.0"                                                                       #
+# Author: Justin C. Bagley                                                               #
+# Date: created by Justin Bagley on July 5, 2017                                         #
+# Last update: October 2, 2019                                                           #
+# Copyright (c) 2017-2019 Justin C. Bagley. All rights reserved.                         #
+# Please report bugs to <bagleyj@umsl.edu>                                               #
+#                                                                                        #
+# Description:                                                                           #
+# SHELL SCRIPT THAT COMPILES THE estpost UTILITY WITHIN THE bgc (BAYESIAN GENOMIC CLINE  #
+# SOFTWARE) DISTRIBUTION                                                                 #
+#                                                                                        #
 ##########################################################################################
 
 ############ SCRIPT OPTIONS
@@ -101,7 +107,7 @@ echo "$USER_SPEC_PATH "
 
 echo "
 ##########################################################################################
-#                           estpostCompiler v0.1.0, July 2017                            #
+#                          estpostCompiler v1.0.0, October 2019                          #
 ##########################################################################################"
 
 ######################################## START ###########################################

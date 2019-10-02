@@ -1,18 +1,24 @@
 #!/bin/sh
 
 ##########################################################################################
-#                              bgcPrepper v0.1.2, July 2017                              #
-#  SHELL SCRIPT FOR AUTOMATING PREPARATION OF BGC INPUT FILES FROM PLINK PED-FORMATTED   #
-#  PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                               #
-#  Copyright (c)2017 Justinc C. Bagley, Virginia Commonwealth University, Richmond, VA,  #
-#  USA; Universidade de Brasília, Brasília, DF, Brazil. See README and license on GitHub #
-#  (http://github.com/justincbagley) for further information. Last update: July 5, 2017. #
-#  For questions, please email jcbagley@vcu.edu.                                         #
+# bgc_tools                                                                              #
+# File: bgcPrepper.sh                                                                    #
+  version="v0.1.3"                                                                       #
+# Author: Justin C. Bagley                                                               #
+# Date: created by Justin Bagley on July 5, 2017                                         #
+# Last update: October 2, 2019                                                           #
+# Copyright (c) 2017-2019 Justin C. Bagley. All rights reserved.                         #
+# Please report bugs to <bagleyj@umsl.edu>                                               #
+#                                                                                        #
+# Description:                                                                           #
+# SHELL SCRIPT FOR AUTOMATING PREPARATION OF BGC INPUT FILES FROM PLINK PED-FORMATTED    #
+# PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                                #
+#                                                                                        #
 ##########################################################################################
 
 echo "
 ##########################################################################################
-#                              bgcPrepper v0.1.2, July 2017                              #
+#                            bgcPrepper v0.1.3, October 2019                             #
 ##########################################################################################"
 
 ######################################## START ###########################################
