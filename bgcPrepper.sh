@@ -8,7 +8,7 @@
 # Date: created by Justin Bagley on July 5, 2017                                         #
 # Last update: October 2, 2019                                                           #
 # Copyright (c) 2017-2019 Justin C. Bagley. All rights reserved.                         #
-# Please report bugs to <bagleyj@umsl.edu>                                               #
+# Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
 # Description:                                                                           #
 # SHELL SCRIPT FOR AUTOMATING PREPARATION OF BGC INPUT FILES FROM PLINK PED-FORMATTED    #

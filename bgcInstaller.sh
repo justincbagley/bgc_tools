@@ -8,7 +8,7 @@
 # Date: created by Justin Bagley on Wed, Oct 2 14:24:59 CDT 2019                         #
 # Last update: October 2, 2019                                                           #
 # Copyright (c) 2019 Justin C. Bagley. All rights reserved.                              #
-# Please report bugs to <bagleyj@umsl.edu>                                               #
+# Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
 # Description:                                                                           #
 # SCRIPT THAT AUTOMATES DOWNLOAD AND INSTALL OF THE SOFTWARE PROGRAM BGC (FOR BAYESIAN   #
