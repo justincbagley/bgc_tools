@@ -20,6 +20,6 @@ Alternatively, please provide the following link to this software repository in 
 
 -   https://github.com/justincbagley/bgc_tools
 
-July 30, 2018
+December 12, 2020
 
-Justin C. Bagley, Richmond, VA, USA
+Justin C. Bagley, Jacksonville, AL, USA
