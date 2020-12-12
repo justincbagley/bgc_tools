@@ -204,7 +204,7 @@ echo "INFO      | $(date) | STEP #7: PREPARE FINAL ADMIXED bgc INPUT FILE. "
 ##--dir to a single file, making sure to use a for loop going in order from 0 to n SNPs,
 ##--where n is the same number of loci in the P1 and P2 files.
 	(
-		MY_N_PLUS_ONE="$(calc $MY_N_ADMIX_COL + 1)"
+		MY_N_PLUS_ONE="$(calc "$MY_N_ADMIX_COL" + 1)";
 		for (( i=1; i<=$MY_N_PLUS_ONE; i++ )); do
 			FILE=./admixed_SNPs/admixed_locus"$i".txt
 			cat $FILE >> ./admixedIn.txt ;
