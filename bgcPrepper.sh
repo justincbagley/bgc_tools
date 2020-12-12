@@ -36,7 +36,7 @@ echo "INFO      | $(date) | STEP #1: SETUP. "
 	MY_PATH=`pwd -P`
 	echo "INFO      | $(date) |          Setting working directory to: $MY_PATH "
 	calc () {
-	bc -l <<< "$@" 
+	bc -l <<< "$@" ;
 }
 
 
@@ -46,32 +46,32 @@ echo "INFO      | $(date) |          Reading in input parental and admixed file(
 ##--name patterns. Then count number (n) columns in each file, which should be identical, 
 ##--since the columns should reflect equal #s of SNPs, with 1 column per SNP.
 
-	MY_P1_FILE="$(find . \( -name "P1*txt" -o -name "p1*txt" -o -name "*p1*" \) -type f | sed 's/\.\///g')"
-	MY_P2_FILE="$(find . \( -name "P2*txt" -o -name "p2*txt" -o -name "*p2*" \) -type f | sed 's/\.\///g')"
-	MY_ADMIXED_FILE="$(find . \( -name "Admix*txt" -o -name "admix*txt" -o -name "*Admix" -o -name "*admix" \) -type f | sed 's/\.\///g')"
+	MY_P1_FILE="$(find . \( -name "P1*txt" -o -name "p1*txt" -o -name "*p1*" \) -type f | sed 's/\.\///g')";
+	MY_P2_FILE="$(find . \( -name "P2*txt" -o -name "p2*txt" -o -name "*p2*" \) -type f | sed 's/\.\///g')";
+	MY_ADMIXED_FILE="$(find . \( -name "Admix*txt" -o -name "admix*txt" -o -name "*Admix" -o -name "*admix" \) -type f | sed 's/\.\///g')";
 
 	##--Get n columns in each file:
-	MY_N_P1_COL="$(calc $(head -n1 $MY_P1_FILE | grep -o "\t" | wc -l))"
-	MY_N_P2_COL="$(calc $(head -n1 $MY_P2_FILE | grep -o "\t" | wc -l))"
-	MY_N_ADMIX_COL="$(calc $(head -n1 $MY_ADMIXED_FILE | grep -o "\t" | wc -l))"
+	MY_N_P1_COL="$(calc $(head -n1 $MY_P1_FILE | grep -o "\t" | wc -l))";
+	MY_N_P2_COL="$(calc $(head -n1 $MY_P2_FILE | grep -o "\t" | wc -l))";
+	MY_N_ADMIX_COL="$(calc $(head -n1 $MY_ADMIXED_FILE | grep -o "\t" | wc -l))";
 
 
 echo "INFO      | $(date) | STEP #3: CLEAN UP, CREATE HEADLESS FILES CONTAINING ONLY DATA MATRICES. "
 echo "INFO      | $(date) |          Removing header rows and columns, and saving backup files ('-e' extension)... "
 	##--Remove row headers (first two columns of data, which contain sample popname and
 	##--ID):
-	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' $MY_P1_FILE
-	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' $MY_P2_FILE
-	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' $MY_ADMIXED_FILE
+	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' "$MY_P1_FILE" ;
+	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' "$MY_P2_FILE" ;
+	perl -i -pe 's/^[A-Z]{2,}\t[A-Z\_0-9]*\t//g' "$MY_ADMIXED_FILE" ;
 
 	##--Also remove header/first line from each file using sed, and create and move sed "-e"
 	##--files to folder (in case they are needed later).
-	sed -i -e "1d" $MY_P1_FILE
-	sed -i -e "1d" $MY_P2_FILE
-	sed -i -e "1d" $MY_ADMIXED_FILE
+	sed -i -e "1d" "$MY_P1_FILE" ;
+	sed -i -e "1d" "$MY_P2_FILE" ;
+	sed -i -e "1d" "$MY_ADMIXED_FILE" ;
 
 	mkdir backup_files
-	mv ./*-e ./backup_files/
+	mv ./*-e ./backup_files/ ;
 
 
 echo "INFO      | $(date) | STEP #4: SPLIT EACH COLUMN/SNP IN THE P1, P2, and admixed FILES OUT INTO A NEW FILE, WHILE "
@@ -95,16 +95,16 @@ echo "INFO      | $(date) |          Separating P1, P2, and admix files into 1 f
 echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate files... "
 	(
 		for (( i=1; i<=$MY_N_P1_COL; i++ )); do
-			cut -f"$i" $MY_P1_FILE > P1_locus"$i".txt
+			cut -f"$i" $MY_P1_FILE > P1_locus"$i".txt ;
 			FILE=P1_locus"$i".txt
 			FILE_SIZE="$(wc -c P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
 			FILE_NLINES="$(wc -l P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
-				rm ./P1_locus"$i".txt
+				rm ./P1_locus"$i".txt ;
 			fi
 
 			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
+			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE" ;
 		done
 	)
 
@@ -116,11 +116,11 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 			FILE_SIZE="$(wc -c P2_locus$i.txt | sed 's/\.\///g; s/P2.*//g')"
 			FILE_NLINES="$(wc -l P2_locus$i.txt | sed 's/\.\///g; s/P2.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
-				rm ./P2_locus"$i".txt
+				rm ./P2_locus"$i".txt ;
 			fi
 
 			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
+			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE"
 		done
 	)
 
@@ -132,19 +132,19 @@ echo "INFO      | $(date) |          Splitting admixed group SNPs out to separat
 			FILE_SIZE="$(wc -c admixed_locus$i.txt | sed 's/\.\///g; s/admixed.*//g')"
 			FILE_NLINES="$(wc -l admixed_locus$i.txt | sed 's/\.\///g; s/admixed.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
-				rm ./admixed_locus"$i".txt
+				rm ./admixed_locus"$i".txt ;
 			fi
 
 			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
+			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE" ;
 		done
 	)
 
 	##--Organize all files for each pop into a single folder
-	mkdir P1_SNPs P2_SNPs admixed_SNPs
-	mv ./P1_locus*.txt ./P1_SNPs/
-	mv ./P2_locus*.txt ./P2_SNPs/
-	mv ./admixed_locus*.txt ./admixed_SNPs/
+	mkdir P1_SNPs P2_SNPs admixed_SNPs ;
+	mv ./P1_locus*.txt ./P1_SNPs/ ;
+	mv ./P2_locus*.txt ./P2_SNPs/ ;
+	mv ./admixed_locus*.txt ./admixed_SNPs/ ;
 
 
 echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT AND MISSING SNP DATA TO MATCH BGC FORMAT. "
@@ -152,41 +152,41 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 #     ``^NA`` with ```\-9\ \-9``. Also recode the SNP data into 0 2, 2 0, 1 1 format.
 	(
 		for i in ./P1_SNPs/P1_locus*.txt; do
-			FILENAME=$(basename $i); FILENAME_MINUS_EXT=${FILENAME%.*}
-			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' "$i"
-			perl -i -pe 's/^1\:2/1\ 1/g' "$i"
-			perl -i -pe 's/^1\:1/0\ 2/g' "$i"
-			perl -i -pe 's/^2\:2/2\ 0/g' "$i"
+			FILENAME=$(basename "$i"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			echo "$FILENAME_MINUS_EXT"
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$i" ;
+			perl -i -pe 's/^1\:2/1\ 1/g' "$i" ;
+			perl -i -pe 's/^1\:1/0\ 2/g' "$i" ;
+			perl -i -pe 's/^2\:2/2\ 0/g' "$i" ;
 		done
 	)
 	
 	(
 		for j in ./P2_SNPs/P2_locus*.txt; do
-			FILENAME=$(basename $j); FILENAME_MINUS_EXT=${FILENAME%.*}
-			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' "$j"
-			perl -i -pe 's/^1\:2/1\ 1/g' "$j"
-			perl -i -pe 's/^1\:1/0\ 2/g' "$j"
-			perl -i -pe 's/^2\:2/2\ 0/g' "$j"
+			FILENAME=$(basename "$j"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			echo "$FILENAME_MINUS_EXT"
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$j" ;
+			perl -i -pe 's/^1\:2/1\ 1/g' "$j" ;
+			perl -i -pe 's/^1\:1/0\ 2/g' "$j" ;
+			perl -i -pe 's/^2\:2/2\ 0/g' "$j" ;
 		done
 	)
 
 	(
 		for k in ./admixed_SNPs/admixed_locus*.txt; do
-			FILENAME=$(basename $k); FILENAME_MINUS_EXT=${FILENAME%.*}
-			echo $FILENAME_MINUS_EXT
-			perl -i -pe 's/^NA/\-9\ \-9/g' "$k"
-			perl -i -pe 's/^1\:2/1\ 1/g' "$k"
-			perl -i -pe 's/^1\:1/0\ 2/g' "$k"
-			perl -i -pe 's/^2\:2/2\ 0/g' "$k"
+			FILENAME=$(basename "$k"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			echo "$FILENAME_MINUS_EXT"
+			perl -i -pe 's/^NA/\-9\ \-9/g' "$k" ;
+			perl -i -pe 's/^1\:2/1\ 1/g' "$k" ;
+			perl -i -pe 's/^1\:1/0\ 2/g' "$k" ;
+			perl -i -pe 's/^2\:2/2\ 0/g' "$k" ;
 		done
 	)
 	
 
 echo "INFO      | $(date) | STEP #6: PREPARE FINAL P1 AND P2 bgc INPUT FILES. "
-	NUM_P1_FILES="$(ls ./P1_SNPs/* | wc -l)"
-	NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)"
+	NUM_P1_FILES="$(ls ./P1_SNPs/* | wc -l)";
+	NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)";
 	
 	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./p0in.txt; done	## This is P1.
 	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./p1in.txt; done	## This is P2.
@@ -207,11 +207,11 @@ echo "INFO      | $(date) | STEP #7: PREPARE FINAL ADMIXED bgc INPUT FILE. "
 		MY_N_PLUS_ONE="$(calc $MY_N_ADMIX_COL + 1)"
 		for (( i=1; i<=$MY_N_PLUS_ONE; i++ )); do
 			FILE=./admixed_SNPs/admixed_locus"$i".txt
-			cat $FILE >> ./admixedIn.txt
+			cat $FILE >> ./admixedIn.txt ;
 		done
 	)
 
-	perl -i -pe 's/(locus\ [0-9]*$)/$1\npop\ 0/g' ./admixedIn.txt
+	perl -i -pe 's/(locus\ [0-9]*$)/$1\npop\ 0/g' ./admixedIn.txt ;
 
 
 echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORRESPONDING LINES (IF ANY). "
@@ -220,10 +220,10 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 ##--therefore need to search for this pattern and remove the corresponding lines if/where
 ##--found. Finding and counting the 
 
-	BLNKLINES_LOCUS_END="$(grep -n $'^$' ./admixedIn.txt-e | sed 's/\.\///g; s/\://g')"
+	BLNKLINES_LOCUS_END="$(grep -n $'^$' ./admixedIn.txt-e | sed 's/\.\///g; s/\://g')";
 	if [[ "$BLNKLINES_LOCUS_END" -eq "1" ]]; then
-		BLNKLINES_LOCUS_START="$(calc $BLNKLINES_LOCUS_END - 2)"
-		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt
+		BLNKLINES_LOCUS_START="$(calc $BLNKLINES_LOCUS_END - 2)";
+		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt ;
 	elif [[ "$BLNKLINES_LOCUS_END" -gt "1" ]]; then
 		echo "WARNING!  | $(date) |          Multiple blank lines in the admixed input file. Check and remove the following "
 		echo "WARNING!  | $(date) |          blank lines, as needed: "
@@ -234,7 +234,7 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 echo "INFO      | $(date) | STEP #9: CHANGE MISSING DATA LINES CODED AS MINUS 9s ('-9 -9') TO ZEROS ('0 0'). "
 ##--Note: Could also fix this by going back up and replacing NAs with 0 0 under STEP #5 ABOVE, but
 ##--the following step adds an insignificant amount time to the analysis, so keep for now.
-	MY_INPUT_TXT_FILES="$(ls ./p0in.txt ./p1in.txt ./admixedIn.txt)"
+	MY_INPUT_TXT_FILES="$(ls ./p0in.txt ./p1in.txt ./admixedIn.txt)";
 	(
 		for l in $MY_INPUT_TXT_FILES; do echo "$l"; perl -i -pe 's/^\-9\ \-9/0\ 0/g' "$l"; done
 	)
