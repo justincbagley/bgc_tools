@@ -205,7 +205,7 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 
 echo "INFO      | $(date) | STEP #6: PREPARE FINAL P1 AND P2 bgc INPUT FILES. "
 	NUM_P1_FILES="$(ls ./P1_SNPs/* | wc -l)";
-	NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)";
+	export NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)";
 	
 	for (( i=1; i<=NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./p0in.txt; done	## This is P1.
 	for (( i=1; i<=NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./p1in.txt; done	## This is P2.
