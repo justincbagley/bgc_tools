@@ -122,7 +122,7 @@ echo "
 echo "INFO      | $(date) | Starting estpost compiler script... "
 echo "INFO      | $(date) | STEP #1: SETUP VARIABLES. "
 echo "INFO      | $(date) |          Setting up variables, including those specified in the btcRunner.cfg configuration file..."
-	MY_BGC_INPUT_FILES="$(echo ./p0in.txt ./p1in.txt ./admixedIn.txt)";
+	export MY_BGC_INPUT_FILES="$(echo ./p0in.txt ./p1in.txt ./admixedIn.txt)";
 
 if [[ "$MY_SSH_ACCOUNT" == "NULL" ]]; then
 	echo "INFO      | $(date) |          Pulling ssh account information from the bgc_runner configuration file..."
