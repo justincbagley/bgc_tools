@@ -116,7 +116,7 @@ echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate fil
 echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate files... "
 	(
 		for (( i=1; i<=$MY_N_P2_COL; i++ )); do
-			cut -f"$i" $MY_P2_FILE > P2_locus"$i".txt
+			cut -f"$i" "$MY_P2_FILE" > P2_locus"$i".txt ;
 			FILE=P2_locus"$i".txt
 			FILE_SIZE="$(wc -c P2_locus"$i".txt | sed 's/\.\///g; s/P2.*//g')"
 			FILE_NLINES="$(wc -l P2_locus"$i".txt | sed 's/\.\///g; s/P2.*//g')"
@@ -132,7 +132,7 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 echo "INFO      | $(date) |          Splitting admixed group SNPs out to separate files... "
 	(
 		for (( i=1; i<=$MY_N_ADMIX_COL; i++ )); do
-			cut -f"$i" $MY_ADMIXED_FILE > admixed_locus"$i".txt
+			cut -f"$i" $MY_ADMIXED_FILE > admixed_locus"$i".txt ;
 			FILE=admixed_locus"$i".txt
 			FILE_SIZE="$(wc -c admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
 			FILE_NLINES="$(wc -l admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
@@ -157,7 +157,7 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 #     ``^NA`` with ```\-9\ \-9``. Also recode the SNP data into 0 2, 2 0, 1 1 format.
 	(
 		for i in ./P1_SNPs/P1_locus*.txt; do
-			FILENAME=$(basename "$i"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			FILENAME=$(basename "$i"); FILENAME_MINUS_EXT=${FILENAME%.*};
 			echo "$FILENAME_MINUS_EXT"
 			perl -i -pe 's/^NA/\-9\ \-9/g' "$i" ;
 			perl -i -pe 's/^1\:2/1\ 1/g' "$i" ;
@@ -168,7 +168,7 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 	
 	(
 		for j in ./P2_SNPs/P2_locus*.txt; do
-			FILENAME=$(basename "$j"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			FILENAME=$(basename "$j"); FILENAME_MINUS_EXT=${FILENAME%.*};
 			echo "$FILENAME_MINUS_EXT"
 			perl -i -pe 's/^NA/\-9\ \-9/g' "$j" ;
 			perl -i -pe 's/^1\:2/1\ 1/g' "$j" ;
@@ -179,7 +179,7 @@ echo "INFO      | $(date) | STEP #5: LOOP THROUGH SNP FILES AND RECODE PRESENT A
 
 	(
 		for k in ./admixed_SNPs/admixed_locus*.txt; do
-			FILENAME=$(basename "$k"); FILENAME_MINUS_EXT=${FILENAME%.*}
+			FILENAME=$(basename "$k"); FILENAME_MINUS_EXT=${FILENAME%.*};
 			echo "$FILENAME_MINUS_EXT"
 			perl -i -pe 's/^NA/\-9\ \-9/g' "$k" ;
 			perl -i -pe 's/^1\:2/1\ 1/g' "$k" ;
