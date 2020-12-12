@@ -3,11 +3,11 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: estpostCompiler.sh                                                               #
-  version="v1.0.0"                                                                       #
+  VERSION="v1.0.1"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on July 5, 2017                                         #
-# Last update: October 2, 2019                                                           #
-# Copyright (c) 2017-2019 Justin C. Bagley. All rights reserved.                         #
+# Last update: December 12, 2020                                                         #
+# Copyright (c) 2017-2020 Justin C. Bagley. All rights reserved.                         #
 # Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
 # Description:                                                                           #
@@ -21,7 +21,9 @@
 MY_SSH_ACCOUNT=NULL
 
 ############ CREATE USAGE & HELP TEXTS
-Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir 
+Usage="
+estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir 
+
  ## Help:
   -h   help text (also: -help)
  
@@ -47,6 +49,7 @@ Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir
  privledges to authorized keys by typing 'chmod u-w authorized keys' after setting things 
  up using ssh-keygen. The following links provide useful tutorials/discussions that will
  help users set up passwordless SSH access:
+
       - http://www.linuxproblem.org/art_9.html
       - http://www.macworld.co.uk/how-to/mac-software/how-generate-ssh-keys-3521606/
       - https://coolestguidesontheplanet.com/make-passwordless-ssh-connection-osx-10-9-mavericks-linux/  (preferred tutorial)
@@ -70,6 +73,11 @@ Usage="estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir
  Gompert Z, Buerkle CA (2012) bgc: Software for Bayesian estimation of genomic clines. 
 	Molecular Ecology Resources, 12, 1168-1176.
 "
+
+if [[ "$1" == "-V" ]] || [[ "$1" == "--version" ]]; then
+	echo "$(basename "$0") $VERSION";
+	exit
+fi
 
 if [[ "$1" == "-h" ]] || [[ "$1" == "-help" ]]; then
 	echo "$Usage"
@@ -107,27 +115,27 @@ echo "$USER_SPEC_PATH "
 
 echo "
 ##########################################################################################
-#                          estpostCompiler v1.0.0, October 2019                          #
+#                          estpostCompiler v1.0.1, December 2020                         #
 ##########################################################################################"
 
 ######################################## START ###########################################
 echo "INFO      | $(date) | Starting estpost compiler script... "
 echo "INFO      | $(date) | STEP #1: SETUP VARIABLES. "
 echo "INFO      | $(date) |          Setting up variables, including those specified in the btcRunner.cfg configuration file..."
-	MY_BGC_INPUT_FILES="$(echo ./p0in.txt ./p1in.txt ./admixedIn.txt)"
+	MY_BGC_INPUT_FILES="$(echo ./p0in.txt ./p1in.txt ./admixedIn.txt)";
 
 if [[ "$MY_SSH_ACCOUNT" == "NULL" ]]; then
 	echo "INFO      | $(date) |          Pulling ssh account information from the bgc_runner configuration file..."
 	MY_SSH_ACCOUNT="$(grep -n "ssh_account" ./bgc_runner.cfg | \
-	awk -F"=" '{print $NF}')"
+	awk -F"=" '{print $NF}')";
 else
 	echo "INFO      | $(date) |          Using ssh account information passed using the -a flag..."
 fi
 
 	MY_SC_DESTINATION="$(grep -n "destination_path" ./bgc_runner.cfg | \
-	awk -F"=" '{print $NF}' | sed 's/\ //g')"
+	awk -F"=" '{print $NF}' | sed 's/\ //g')";
 	MY_SC_BIN="$(grep -n "bin_path" ./bgc_runner.cfg | \
-	awk -F"=" '{print $NF}' | sed 's/\ //g')"
+	awk -F"=" '{print $NF}' | sed 's/\ //g')";
 
 
 echo "INFO      | $(date) | STEP #2: COMPILE THE PROGRAM. "
