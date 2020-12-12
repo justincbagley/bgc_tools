@@ -146,7 +146,7 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 echo "INFO      | $(date) |          Splitting admixed group SNPs out to separate files... "
 	(
 		for (( i=1; i<=MY_N_ADMIX_COL; i++ )); do
-			cut -f"$i" $MY_ADMIXED_FILE > admixed_locus"$i".txt ;
+			cut -f"$i" "$MY_ADMIXED_FILE" > admixed_locus"$i".txt ;
 			FILE=admixed_locus"$i".txt
 			FILE_SIZE="$(wc -c admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
 			FILE_NLINES="$(wc -l admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
