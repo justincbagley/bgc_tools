@@ -3,7 +3,7 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: bgcPrepper.sh                                                                    #
-  version="v0.1.4"                                                                       #
+  VERSION="v0.1.4"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on July 5, 2017                                         #
 # Last update: December 12, 2020                                                         #
@@ -15,6 +15,11 @@
 # PARENTAL (P1, P2) AND ADMIXED POPULATION SNP DATA FILES                                #
 #                                                                                        #
 ##########################################################################################
+
+if [[ "$1" == "-V" ]] || [[ "$1" == "--version" ]]; then
+	echo "$(basename "$0") $VERSION";
+	exit
+fi
 
 echo "
 ##########################################################################################
