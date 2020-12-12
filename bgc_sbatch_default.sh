@@ -15,6 +15,6 @@
 
 bgc -a p0in.txt -b ./p1in.txt -h ./admixedIn.txt -O 1 -x 45000 -n 25000 -p 1 -q 1 -N 0 -m 0 -t 20 -d 1 -s 1 -I 1 -u 0.1
 
-cd $PBS_O_WORKDIR
+cd "$PBS_O_WORKDIR"
 
 exit 0
