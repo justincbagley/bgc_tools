@@ -97,14 +97,14 @@ echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate fil
 		for (( i=1; i<=$MY_N_P1_COL; i++ )); do
 			cut -f"$i" "$MY_P1_FILE" > P1_locus"$i".txt ;
 			FILE=P1_locus"$i".txt
-			FILE_SIZE="$(wc -c P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
-			FILE_NLINES="$(wc -l P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
+			FILE_SIZE="$(wc -c P1_locus"$i".txt | sed 's/\.\///g; s/P1.*//g')"
+			FILE_NLINES="$(wc -l P1_locus"$i".txt | sed 's/\.\///g; s/P1.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
 				rm ./P1_locus"$i".txt ;
 			fi
 
 			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE" ;
+			echo "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE" ;
 		done
 	)
 
@@ -113,14 +113,14 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 		for (( i=1; i<=$MY_N_P2_COL; i++ )); do
 			cut -f"$i" $MY_P2_FILE > P2_locus"$i".txt
 			FILE=P2_locus"$i".txt
-			FILE_SIZE="$(wc -c P2_locus$i.txt | sed 's/\.\///g; s/P2.*//g')"
-			FILE_NLINES="$(wc -l P2_locus$i.txt | sed 's/\.\///g; s/P2.*//g')"
+			FILE_SIZE="$(wc -c P2_locus"$i".txt | sed 's/\.\///g; s/P2.*//g')"
+			FILE_NLINES="$(wc -l P2_locus"$i".txt | sed 's/\.\///g; s/P2.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
 				rm ./P2_locus"$i".txt ;
 			fi
 
 			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE"
+			echo "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE"
 		done
 	)
 
@@ -129,8 +129,8 @@ echo "INFO      | $(date) |          Splitting admixed group SNPs out to separat
 		for (( i=1; i<=$MY_N_ADMIX_COL; i++ )); do
 			cut -f"$i" $MY_ADMIXED_FILE > admixed_locus"$i".txt
 			FILE=admixed_locus"$i".txt
-			FILE_SIZE="$(wc -c admixed_locus$i.txt | sed 's/\.\///g; s/admixed.*//g')"
-			FILE_NLINES="$(wc -l admixed_locus$i.txt | sed 's/\.\///g; s/admixed.*//g')"
+			FILE_SIZE="$(wc -c admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
+			FILE_NLINES="$(wc -l admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
 			if [[ "$FILE_SIZE" -eq "$FILE_NLINES" ]]; then
 				rm ./admixed_locus"$i".txt ;
 			fi
@@ -222,7 +222,7 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 
 	BLNKLINES_LOCUS_END="$(grep -n $'^$' ./admixedIn.txt-e | sed 's/\.\///g; s/\://g')";
 	if [[ "$BLNKLINES_LOCUS_END" -eq "1" ]]; then
-		BLNKLINES_LOCUS_START="$(calc $BLNKLINES_LOCUS_END - 2)";
+		BLNKLINES_LOCUS_START="$(calc "$BLNKLINES_LOCUS_END" - 2)";
 		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt ;
 	elif [[ "$BLNKLINES_LOCUS_END" -gt "1" ]]; then
 		echo "WARNING!  | $(date) |          Multiple blank lines in the admixed input file. Check and remove the following "
