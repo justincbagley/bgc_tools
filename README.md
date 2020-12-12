@@ -7,6 +7,8 @@ All code within the ```bgc_tools``` repository is available "AS IS" under a gene
 
 ## CITATION
 
+Should you cite **bgc_tools**? See https://github.com/mr-c/shouldacite/blob/master/should-I-cite-this-software.md.
+
 If you use scripts from this repository as part of your published research, I require that you cite the repository as follows (also see _upcoming_ DOI information): 
   
 - Bagley, J.C. 2017. bgc_tools. GitHub repository, Available at: https://github.com/justincbagley/bgc_tools.
