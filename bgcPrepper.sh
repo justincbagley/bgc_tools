@@ -44,6 +44,20 @@ echo "INFO      | $(date) | STEP #1: SETUP. "
 	bc -l <<< "$@" ;
 }
 
+###### Check machine type function:
+	function checkMachineType () {
+	unameOut="$(uname -s)";
+	case "${unameOut}" in
+		Linux*)     machine=Linux;;
+		Darwin*)    machine=Mac;;
+		CYGWIN*)    machine=Cygwin;;
+		MINGW*)     machine=MinGw;;
+		*)          machine="UNKNOWN:${unameOut}"
+	esac;
+}
+# run function:
+checkMachineType
+
 
 echo "INFO      | $(date) | STEP #2: READ INPUT FILES AND SAVE INFO ON THEIR CHARACTERISTICS. "
 echo "INFO      | $(date) |          Reading in input parental and admixed file(s)... "
@@ -212,7 +226,7 @@ echo "INFO      | $(date) | STEP #7: PREPARE FINAL ADMIXED bgc INPUT FILE. "
 		MY_N_PLUS_ONE="$(calc "$MY_N_ADMIX_COL" + 1)";
 		for (( i=1; i<=MY_N_PLUS_ONE; i++ )); do
 			FILE=./admixed_SNPs/admixed_locus"$i".txt
-			cat $FILE >> ./admixedIn.txt ;
+			cat "$FILE" >> ./admixedIn.txt ;
 		done
 	)
 
@@ -228,7 +242,12 @@ echo "INFO      | $(date) | STEP #8: CHECK FOR LOCI WITH NO DATA AND REMOVE CORR
 	BLNKLINES_LOCUS_END="$(grep -n $'^$' ./admixedIn.txt-e | sed 's/\.\///g; s/\://g')";
 	if [[ "$BLNKLINES_LOCUS_END" -eq "1" ]]; then
 		BLNKLINES_LOCUS_START="$(calc "$BLNKLINES_LOCUS_END" - 2)";
-		sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt ;
+		if [[ "$machine" = "Mac" ]]; then 
+			sed -i '' "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt ;
+		fi
+		if [[ "$machine" = "Linux" ]]; then 
+			sed -i "$BLNKLINES_LOCUS_START","$BLNKLINES_LOCUS_END"d ./admixedIn.txt ;
+		fi
 	elif [[ "$BLNKLINES_LOCUS_END" -gt "1" ]]; then
 		echo "WARNING!  | $(date) |          Multiple blank lines in the admixed input file. Check and remove the following "
 		echo "WARNING!  | $(date) |          blank lines, as needed: "
