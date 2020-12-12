@@ -193,8 +193,8 @@ echo "INFO      | $(date) | STEP #6: PREPARE FINAL P1 AND P2 bgc INPUT FILES. "
 	NUM_P1_FILES="$(ls ./P1_SNPs/* | wc -l)";
 	NUM_P2_FILES="$(ls ./P2_SNPs/* | wc -l)";
 	
-	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./p0in.txt; done	## This is P1.
-	for (( i=1; i<=$NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./p1in.txt; done	## This is P2.
+	for (( i=1; i<=NUM_P1_FILES; i++ )); do cat ./P1_SNPs/P1_locus"$i".txt >> ./p0in.txt; done	## This is P1.
+	for (( i=1; i<=NUM_P1_FILES; i++ )); do cat ./P2_SNPs/P2_locus"$i".txt >> ./p1in.txt; done	## This is P2.
 	##--Just using $NUM_P1_FILES twice above (for P2 as well) for convenience, since these numbers
 	##--should be equal to one another. You could use $NUM_P2_FILES on the second line; however, a
 	##--better (more conservative) way would be to check whether these two values were equal, and if
