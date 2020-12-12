@@ -3,11 +3,11 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: bgcPrepper.sh                                                                    #
-  version="v0.1.3"                                                                       #
+  version="v0.1.4"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on July 5, 2017                                         #
-# Last update: October 2, 2019                                                           #
-# Copyright (c) 2017-2019 Justin C. Bagley. All rights reserved.                         #
+# Last update: December 12, 2020                                                         #
+# Copyright (c) 2017-2020 Justin C. Bagley. All rights reserved.                         #
 # Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
 # Description:                                                                           #
@@ -18,7 +18,7 @@
 
 echo "
 ##########################################################################################
-#                            bgcPrepper v0.1.3, October 2019                             #
+#                            bgcPrepper v0.1.4, December 2020                            #
 ##########################################################################################"
 
 ######################################## START ###########################################
