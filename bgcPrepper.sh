@@ -108,7 +108,7 @@ echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate fil
 				rm ./P1_locus"$i".txt ;
 			fi
 
-			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
+			## echo -e "$(echo locus $(calc "$i" -1))\n$(cat "$FILE")" > "$FILE" ;
 			echo "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE" ;
 		done
 	)
@@ -124,7 +124,7 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 				rm ./P2_locus"$i".txt ;
 			fi
 
-			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
+			## echo -e "$(echo locus $(calc "$i" -1))\n$(cat "$FILE")" > "$FILE" ;
 			echo "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE"
 		done
 	)
@@ -140,8 +140,8 @@ echo "INFO      | $(date) |          Splitting admixed group SNPs out to separat
 				rm ./admixed_locus"$i".txt ;
 			fi
 
-			## echo -e "$(echo locus $(calc $i -1))\n$(cat $FILE)" > $FILE
-			echo "$(echo locus $(calc $i -1))\n$(cat $FILE)" > "$FILE" ;
+			## echo -e "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE" ;
+			echo "$(echo locus $(calc "$i" -1))\n$(cat $FILE)" > "$FILE" ;
 		done
 	)
 
