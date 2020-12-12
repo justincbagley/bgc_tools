@@ -3,12 +3,12 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: bgcInstaller.sh                                                                  #
-  version="v1.0.0"                                                                       #
+  VERSION="v1.0.1"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on Wed, Oct 2 14:24:59 CDT 2019                         #
-# Last update: October 2, 2019                                                           #
-# Copyright (c) 2019 Justin C. Bagley. All rights reserved.                              #
-# Please report bugs to <bagleyj@umsl.edu>.                                              #
+# Last update: December 12, 2020                                                         #
+# Copyright (c) 2019-2020 Justin C. Bagley. All rights reserved.                         #
+# Please report bugs to <jbagley@jsu.edu>.                                               #
 #                                                                                        #
 # Description:                                                                           #
 # SCRIPT THAT AUTOMATES DOWNLOAD AND INSTALL OF THE SOFTWARE PROGRAM BGC (FOR BAYESIAN   #
@@ -16,9 +16,14 @@
 #                                                                                        #
 ##########################################################################################
 
+if [[ "$1" == "-V" ]] || [[ "$1" == "--version" ]]; then
+	echo "$(basename "$0") $VERSION";
+	exit
+fi
+
 echo "
 ##########################################################################################
-#                           bgcInstaller v1.0.0, October 2019                            #
+#                           bgcInstaller v1.0.1, December 2020                           #
 ##########################################################################################"
 
 ######################################## START ###########################################
@@ -94,9 +99,9 @@ cd ..;
 echo "$(date)  Checking to see whether bgc is working on your machine... "
 echo "$(date)  Testing... testing... 1... 2... 3... "
 
-bgc -h
+bgc -h ;
 
-estpost -h
+estpost -h ;
 
 echo " Finished downloading and compiling bgc and related utility program estpost on your local machine using bgcInstaller (bgc_tools). "
 echo " Bye."
