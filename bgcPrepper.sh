@@ -99,7 +99,7 @@ echo "INFO      | $(date) |          Separating P1, P2, and admix files into 1 f
 	##--files, and could possibly be a little slow... but it gets the job done right. 
 echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate files... "
 	(
-		for (( i=1; i<=$MY_N_P1_COL; i++ )); do
+		for (( i=1; i<=MY_N_P1_COL; i++ )); do
 			cut -f"$i" "$MY_P1_FILE" > P1_locus"$i".txt ;
 			FILE=P1_locus"$i".txt
 			FILE_SIZE="$(wc -c P1_locus"$i".txt | sed 's/\.\///g; s/P1.*//g')"
@@ -115,7 +115,7 @@ echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate fil
 
 echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate files... "
 	(
-		for (( i=1; i<=$MY_N_P2_COL; i++ )); do
+		for (( i=1; i<=MY_N_P2_COL; i++ )); do
 			cut -f"$i" "$MY_P2_FILE" > P2_locus"$i".txt ;
 			FILE=P2_locus"$i".txt
 			FILE_SIZE="$(wc -c P2_locus"$i".txt | sed 's/\.\///g; s/P2.*//g')"
@@ -131,7 +131,7 @@ echo "INFO      | $(date) |          Splitting P2 group SNPs out to separate fil
 
 echo "INFO      | $(date) |          Splitting admixed group SNPs out to separate files... "
 	(
-		for (( i=1; i<=$MY_N_ADMIX_COL; i++ )); do
+		for (( i=1; i<=MY_N_ADMIX_COL; i++ )); do
 			cut -f"$i" $MY_ADMIXED_FILE > admixed_locus"$i".txt ;
 			FILE=admixed_locus"$i".txt
 			FILE_SIZE="$(wc -c admixed_locus"$i".txt | sed 's/\.\///g; s/admixed.*//g')"
