@@ -51,9 +51,9 @@ echo "INFO      | $(date) |          Reading in input parental and admixed file(
 	MY_ADMIXED_FILE="$(find . \( -name "Admix*txt" -o -name "admix*txt" -o -name "*Admix" -o -name "*admix" \) -type f | sed 's/\.\///g')";
 
 	##--Get n columns in each file:
-	MY_N_P1_COL="$(calc $(head -n1 $MY_P1_FILE | grep -o "\t" | wc -l))";
-	MY_N_P2_COL="$(calc $(head -n1 $MY_P2_FILE | grep -o "\t" | wc -l))";
-	MY_N_ADMIX_COL="$(calc $(head -n1 $MY_ADMIXED_FILE | grep -o "\t" | wc -l))";
+	MY_N_P1_COL="$(calc $(head -n1 "$MY_P1_FILE" | grep -o "\t" | wc -l))";
+	MY_N_P2_COL="$(calc $(head -n1 "$MY_P2_FILE" | grep -o "\t" | wc -l))";
+	MY_N_ADMIX_COL="$(calc $(head -n1 "$MY_ADMIXED_FILE" | grep -o "\t" | wc -l))";
 
 
 echo "INFO      | $(date) | STEP #3: CLEAN UP, CREATE HEADLESS FILES CONTAINING ONLY DATA MATRICES. "
@@ -95,7 +95,7 @@ echo "INFO      | $(date) |          Separating P1, P2, and admix files into 1 f
 echo "INFO      | $(date) |          Splitting P1 group SNPs out to separate files... "
 	(
 		for (( i=1; i<=$MY_N_P1_COL; i++ )); do
-			cut -f"$i" $MY_P1_FILE > P1_locus"$i".txt ;
+			cut -f"$i" "$MY_P1_FILE" > P1_locus"$i".txt ;
 			FILE=P1_locus"$i".txt
 			FILE_SIZE="$(wc -c P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
 			FILE_NLINES="$(wc -l P1_locus$i.txt | sed 's/\.\///g; s/P1.*//g')"
