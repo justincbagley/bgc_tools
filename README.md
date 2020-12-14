@@ -6,6 +6,23 @@ Utilities for automating bgc (Bayesian genomic cline) file prep, analysis, and r
 
 This is the initial development release of `bgc_tools`, a set of utilities for automating `bgc` (Bayesian genomic cline) file prep, analysis, and results plotting, written and developed by Justin Bagley. This software package aids analyses of hybridization using the `bgc` program (Gompert and Buerkle 2012), which uses MCMC to estimate parameters of the Bayesian genomic cline model from genomic SNP/genotype data. This package is under active development but the release is stable.
 
+## INSTALL
+
+### Homebrew install
+
+[See here.](https://github.com/justincbagley/homebrew-tap)
+
+**Recommended:**
+
+1. Development (cutting edge) Homebrew install:
+
+```bash
+# Install:
+brew tap justincbagley/homebrew-tap ;
+brew update ;
+brew install bgc_tools ;
+```
+
 ## LICENSE
 
 All code within the ```bgc_tools``` repository is available "AS IS" under a generous 3-Clause BSD license. See the [LICENSE](LICENSE) file for more information.
