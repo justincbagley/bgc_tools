@@ -3,10 +3,10 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: estpostCompiler.sh                                                               #
-  VERSION="v1.0.1"                                                                       #
+  VERSION="v1.0.2"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on July 5, 2017                                         #
-# Last update: December 12, 2020                                                         #
+# Last update: December 19, 2020                                                         #
 # Copyright (c) 2017-2020 Justin C. Bagley. All rights reserved.                         #
 # Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
@@ -59,9 +59,9 @@ estpostCompiler.sh [Help: -h help] [Options: -a sshAccount] workingDir
  This script only applies to the remote supercomputer scenario discussed above, because
  installation of estpost on the user's local machine will be quite trivial.
  
-      ##--Usage example:
-      chmod u+x "$0"	## Modify permissions.
-      "$0" .		## Execute in current directory.
+      # Usage example:
+      chmod u+x ./estpostCompiler.sh      # Modify permissions.
+      ./estpostCompiler.sh .              # Execute in current directory.
 
  CITATION
  Bagley, J.C. 2017. bgc_tools v0.1.0. GitHub repository, Available at: 
@@ -115,7 +115,7 @@ echo "$USER_SPEC_PATH "
 
 echo "
 ##########################################################################################
-#                          estpostCompiler v1.0.1, December 2020                         #
+#                          estpostCompiler v1.0.2, December 2020                         #
 ##########################################################################################"
 
 ######################################## START ###########################################
@@ -133,9 +133,9 @@ else
 fi
 
 	MY_SC_DESTINATION="$(grep -n "destination_path" ./bgc_runner.cfg | \
-	awk -F"=" '{print $NF}' | sed 's/\ //g')";
+		awk -F"=" '{print $NF}' | sed 's/\ //g')";
 	MY_SC_BIN="$(grep -n "bin_path" ./bgc_runner.cfg | \
-	awk -F"=" '{print $NF}' | sed 's/\ //g')";
+		awk -F"=" '{print $NF}' | sed 's/\ //g')";
 
 
 echo "INFO      | $(date) | STEP #2: COMPILE THE PROGRAM. "

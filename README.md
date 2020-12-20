@@ -14,7 +14,7 @@ This is the initial development release of `bgc_tools`, a set of utilities for a
 
 **Recommended:**
 
-1. Development (cutting edge) Homebrew install:
+1.  Development (cutting edge) Homebrew install:
 
 ```bash
 # Install:
@@ -41,8 +41,8 @@ Alternatively, please provide the following link to this software repository in 
 
 ## REFERENCES
 
--   Gompert, Z. and Buerkle, C.A., 2012. bgc: Software for Bayesian estimation of genomic clines. *Molecular Ecology Resources*, 12(6), 1168-1176.
+-   Gompert, Z. and Buerkle, C.A., 2012. bgc: Software for Bayesian estimation of genomic clines. _Molecular Ecology Resources_, 12(6), 1168-1176.
 
-December 14, 2020
+December 19, 2020
 
 Justin C. Bagley, Jacksonville, AL, USA
