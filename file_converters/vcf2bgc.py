@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-"""# MIT License
+"""
+
+# MIT License
 
 Copyright (c) 2018 Bradley Martin
 
