@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-"""
-# MIT License
+"""# MIT License
 
 Copyright (c) 2018 Bradley Martin
 
@@ -28,7 +27,9 @@ SOFTWARE.
 Script to convert VCF files to BGC (Bayesian Genomic Cline) format, using the genotype uncertainties.
 Uses the read depth for each allele and each individual
 which is output in the ipyrad VCF file.
+
 BGC format looks like this:
+
 Parental population files:
 locus_1
 22 4
@@ -40,6 +41,7 @@ locus_2
 22 3
 0 1
 0 0
+
 Admixed population files:
 locus_1
 pop_0
@@ -53,10 +55,12 @@ pop_0
 33 5
 33 0
 0 0
+
 So: the loci contain 4 individuals, and each column represents the read depth
 for each allele. Must be bi-allelic data. The admixed file requires a population ID line.
 The ipyrad VCF output file contains a column that includes:
 GT (Genotype):DP (total reads):CATG (# reads per allele) delimited by a colon.
+
 Dependencies:
 	PyVCF (I used version 0.6.8)
 """
@@ -65,7 +69,6 @@ Dependencies:
 import argparse
 import sys
 import vcf # PyVCF module
-
 
 def main():
 
@@ -248,7 +251,6 @@ def get_allele_depth(record, pop, ref, alt, sampledict):
 			continue
 
 	return result
-
 
 def write_output(record, sampledict, ref, alt, locus, prefix, admix, p1, p2):
 	"""
