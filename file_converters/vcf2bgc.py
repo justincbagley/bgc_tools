@@ -190,7 +190,7 @@ def main():
 
 		# For next iteration.
 		previous_chrom = record.CHROM
-		previous_pos = record.POS
+		#previous_pos = record.POS
 
 	admix.close()
 	p1.close()
