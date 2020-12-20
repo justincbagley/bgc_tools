@@ -122,8 +122,7 @@ def main():
 		if previous_chrom is None:
 			pos_list.append(record.POS)
 			locus_list.append(locus)
-			diff_counter = 0
-			
+			diff_counter = 0		
 		elif previous_chrom and str(record.CHROM) == str(previous_chrom):
 			pos_list.append(record.POS)
 			diff_counter = 0
