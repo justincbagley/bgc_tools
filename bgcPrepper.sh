@@ -3,10 +3,10 @@
 ##########################################################################################
 # bgc_tools                                                                              #
 # File: bgcPrepper.sh                                                                    #
-  VERSION="v0.1.4"                                                                       #
+  VERSION="v0.1.5"                                                                       #
 # Author: Justin C. Bagley                                                               #
 # Date: created by Justin Bagley on July 5, 2017                                         #
-# Last update: December 12, 2020                                                         #
+# Last update: December 19, 2020                                                         #
 # Copyright (c) 2017-2020 Justin C. Bagley. All rights reserved.                         #
 # Please report bugs to <bagleyj@umsl.edu>.                                              #
 #                                                                                        #
@@ -23,7 +23,7 @@ fi
 
 echo "
 ##########################################################################################
-#                            bgcPrepper v0.1.4, December 2020                            #
+#                            bgcPrepper v0.1.5, December 2020                            #
 ##########################################################################################"
 
 ######################################## START ###########################################
@@ -38,14 +38,14 @@ echo "
 
 echo "INFO      | $(date) | STEP #1: SETUP. " 
 ###### Set paths and filetypes as different environmental variables, and make calc:
-	MY_PATH=`pwd -P`
+	MY_PATH="$(pwd -P)";
 	echo "INFO      | $(date) |          Setting working directory to: $MY_PATH "
 	calc () {
 	bc -l <<< "$@" ;
 }
 
 ###### Check machine type function:
-	function checkMachineType () {
+function checkMachineType () {
 	unameOut="$(uname -s)";
 	case "${unameOut}" in
 		Linux*)     machine=Linux;;
