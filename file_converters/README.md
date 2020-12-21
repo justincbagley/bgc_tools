@@ -13,13 +13,13 @@ vcf2bgc - converts ipyrad VCF file to BGC (Bayesian Genomic Cline) genotype unce
 ```
 ### Installation
 
-1.   Set execution privileges
+1.    Set execution privileges
 
 ```bash
 chmod u+x ./vcf2bgc.py
 ```
 
-2.   Install dependencies
+2.    Install dependencies
 
 The main dependency is PyVCF, available via [pip install](https://pypi.org/project/PyVCF/) or [Anaconda install](https://anaconda.org/bioconda/pyvcf). Code for each install is provided below:
 
